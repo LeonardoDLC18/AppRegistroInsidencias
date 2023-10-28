@@ -59,7 +59,15 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(128, 173, 216));
+        jTextField2.setText("Contraseña...");
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 40));
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(128, 173, 216));
+        jTextField1.setText("Usuario...");
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 240, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
