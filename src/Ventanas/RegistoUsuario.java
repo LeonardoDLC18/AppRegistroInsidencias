@@ -49,7 +49,7 @@ public class RegistoUsuario extends javax.swing.JFrame {
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField2.setText("Usuario...");
+        jTextField2.setText("Confirmar contraseña...");
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, 40));
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -59,12 +59,12 @@ public class RegistoUsuario extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField6.setText("Usuario...");
+        jTextField6.setText("Correo...");
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 290, 40));
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField7.setText("Usuario...");
+        jTextField7.setText("Contraseña...");
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
