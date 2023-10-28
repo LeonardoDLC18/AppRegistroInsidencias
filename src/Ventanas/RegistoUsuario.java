@@ -27,63 +27,63 @@ public class RegistoUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_volver = new javax.swing.JLabel();
+        txt_confirmar = new javax.swing.JTextField();
+        txt_usuario = new javax.swing.JTextField();
+        txt_correo = new javax.swing.JTextField();
+        txt_contraseña = new javax.swing.JTextField();
+        lbl_registrar = new javax.swing.JLabel();
+        lbl_boton = new javax.swing.JLabel();
+        lbl_titulo = new javax.swing.JLabel();
+        lbl_fondo2 = new javax.swing.JLabel();
         lbl_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(193, 248, 255));
-        jLabel6.setText("Volver");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
+        lbl_volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_volver.setForeground(new java.awt.Color(193, 248, 255));
+        lbl_volver.setText("Volver");
+        jPanel1.add(lbl_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField2.setText("Confirmar contraseña...");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, 40));
+        txt_confirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_confirmar.setForeground(new java.awt.Color(128, 173, 216));
+        txt_confirmar.setText("Confirmar contraseña...");
+        jPanel1.add(txt_confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, 40));
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField5.setText("Usuario...");
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 290, 40));
+        txt_usuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_usuario.setForeground(new java.awt.Color(128, 173, 216));
+        txt_usuario.setText("Usuario...");
+        jPanel1.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 290, 40));
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField6.setText("Correo...");
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 290, 40));
+        txt_correo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_correo.setForeground(new java.awt.Color(128, 173, 216));
+        txt_correo.setText("Correo...");
+        jPanel1.add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 290, 40));
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField7.setText("Contraseña...");
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 40));
+        txt_contraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_contraseña.setForeground(new java.awt.Color(128, 173, 216));
+        txt_contraseña.setText("Contraseña...");
+        jPanel1.add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 40));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(193, 255, 248));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("REGISTRAR");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 240, 50));
+        lbl_registrar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        lbl_registrar.setForeground(new java.awt.Color(193, 255, 248));
+        lbl_registrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_registrar.setText("REGISTRAR");
+        jPanel1.add(lbl_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 240, 50));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+        lbl_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
+        jPanel1.add(lbl_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(128, 173, 216));
-        jLabel3.setText("REGISTRO");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        lbl_titulo.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        lbl_titulo.setForeground(new java.awt.Color(128, 173, 216));
+        lbl_titulo.setText("REGISTRO");
+        jPanel1.add(lbl_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/Fondo2.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 330, 400));
+        lbl_fondo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/Fondo2.png"))); // NOI18N
+        jPanel1.add(lbl_fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 330, 400));
 
         lbl_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo.png"))); // NOI18N
         jPanel1.add(lbl_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 440));
@@ -138,16 +138,16 @@ public class RegistoUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel lbl_boton;
     private javax.swing.JLabel lbl_fondo;
+    private javax.swing.JLabel lbl_fondo2;
+    private javax.swing.JLabel lbl_registrar;
+    private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JLabel lbl_volver;
+    private javax.swing.JTextField txt_confirmar;
+    private javax.swing.JTextField txt_contraseña;
+    private javax.swing.JTextField txt_correo;
+    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
