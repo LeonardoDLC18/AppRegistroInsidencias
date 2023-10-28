@@ -27,59 +27,59 @@ public class InicioSesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_noCuenta = new javax.swing.JLabel();
+        lbl_olvidaste = new javax.swing.JLabel();
+        lbl_iniciar = new javax.swing.JLabel();
+        lbl_boton = new javax.swing.JLabel();
+        txt_contraseña = new javax.swing.JTextField();
+        txt_usuario = new javax.swing.JTextField();
+        lbl_titulo = new javax.swing.JLabel();
+        lbl_fondo2 = new javax.swing.JLabel();
+        lbl_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(193, 248, 255));
-        jLabel7.setText("¿No tienes una cuenta registrada?");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        lbl_noCuenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_noCuenta.setForeground(new java.awt.Color(193, 248, 255));
+        lbl_noCuenta.setText("¿No tienes una cuenta registrada?");
+        jPanel1.add(lbl_noCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(193, 248, 255));
-        jLabel6.setText("¿Olvidaste tu contraseña?");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
+        lbl_olvidaste.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_olvidaste.setForeground(new java.awt.Color(193, 248, 255));
+        lbl_olvidaste.setText("¿Olvidaste tu contraseña?");
+        jPanel1.add(lbl_olvidaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(193, 255, 248));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("INICIAR");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 240, 50));
+        lbl_iniciar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        lbl_iniciar.setForeground(new java.awt.Color(193, 255, 248));
+        lbl_iniciar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_iniciar.setText("INICIAR");
+        jPanel1.add(lbl_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 240, 50));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        lbl_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
+        jPanel1.add(lbl_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField2.setText("Contraseña...");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 40));
+        txt_contraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_contraseña.setForeground(new java.awt.Color(128, 173, 216));
+        txt_contraseña.setText("Contraseña...");
+        jPanel1.add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 40));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(128, 173, 216));
-        jTextField1.setText("Usuario...");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 240, 40));
+        txt_usuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_usuario.setForeground(new java.awt.Color(128, 173, 216));
+        txt_usuario.setText("Usuario...");
+        jPanel1.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 240, 40));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(128, 173, 216));
-        jLabel3.setText("BIENVENIDO");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+        lbl_titulo.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        lbl_titulo.setForeground(new java.awt.Color(128, 173, 216));
+        lbl_titulo.setText("BIENVENIDO");
+        jPanel1.add(lbl_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo2.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 330));
+        lbl_fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo2.png"))); // NOI18N
+        jPanel1.add(lbl_fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 330));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, -1, -1));
+        lbl_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo.png"))); // NOI18N
+        jPanel1.add(lbl_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,15 +131,15 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lbl_boton;
+    private javax.swing.JLabel lbl_fondo;
+    private javax.swing.JLabel lbl_fondo2;
+    private javax.swing.JLabel lbl_iniciar;
+    private javax.swing.JLabel lbl_noCuenta;
+    private javax.swing.JLabel lbl_olvidaste;
+    private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JTextField txt_contraseña;
+    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
