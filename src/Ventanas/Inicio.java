@@ -14,7 +14,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public Inicio() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -28,14 +28,15 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         icon_filtros = new javax.swing.JLabel();
-        lbl_resueltos = new javax.swing.JLabel();
-        lbl_sinIniciar = new javax.swing.JLabel();
-        lbl_iniciados = new javax.swing.JLabel();
         icon_registro = new javax.swing.JLabel();
         icon_eliminar = new javax.swing.JLabel();
         icon_ver = new javax.swing.JLabel();
         icon_editar = new javax.swing.JLabel();
         icon_generar = new javax.swing.JLabel();
+        icon_perfil = new javax.swing.JLabel();
+        lbl_resueltos = new javax.swing.JLabel();
+        lbl_sinIniciar = new javax.swing.JLabel();
+        lbl_iniciados = new javax.swing.JLabel();
         lbl_cuaReporte = new javax.swing.JLabel();
         lbl_cuaEliminar = new javax.swing.JLabel();
         lbl_cuaVer = new javax.swing.JLabel();
@@ -45,7 +46,6 @@ public class Inicio extends javax.swing.JFrame {
         lbl_recResueltos = new javax.swing.JLabel();
         lbl_recSinIniciar = new javax.swing.JLabel();
         lbl_recIniciados = new javax.swing.JLabel();
-        icon_perfil = new javax.swing.JLabel();
         lbl_cirPerfil = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_listaMostrando = new javax.swing.JList<>();
@@ -60,6 +60,30 @@ public class Inicio extends javax.swing.JFrame {
         icon_filtros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconFiltros.png"))); // NOI18N
         jPanel1.add(icon_filtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 50, 50));
 
+        icon_registro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconRegistro.png"))); // NOI18N
+        jPanel1.add(icon_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 50, 50));
+
+        icon_eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEliminar.png"))); // NOI18N
+        jPanel1.add(icon_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 50, 50));
+
+        icon_ver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconVer.png"))); // NOI18N
+        jPanel1.add(icon_ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 50, 50));
+
+        icon_editar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEditar.png"))); // NOI18N
+        jPanel1.add(icon_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 50, 50));
+
+        icon_generar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_generar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconGenerar.png"))); // NOI18N
+        jPanel1.add(icon_generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 50, 50));
+
+        icon_perfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconPerfil.png"))); // NOI18N
+        jPanel1.add(icon_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 50, 50));
+
         lbl_resueltos.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lbl_resueltos.setForeground(new java.awt.Color(255, 255, 255));
         lbl_resueltos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,39 +94,19 @@ public class Inicio extends javax.swing.JFrame {
         lbl_sinIniciar.setForeground(new java.awt.Color(255, 255, 255));
         lbl_sinIniciar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_sinIniciar.setText("Sin Iniciar");
-        jPanel1.add(lbl_sinIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 100, 50));
+        jPanel1.add(lbl_sinIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 100, 50));
 
         lbl_iniciados.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lbl_iniciados.setForeground(new java.awt.Color(255, 255, 255));
         lbl_iniciados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_iniciados.setText("Iniciados");
-        jPanel1.add(lbl_iniciados, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 100, 50));
-
-        icon_registro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconRegistro.png"))); // NOI18N
-        jPanel1.add(icon_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 50, 50));
-
-        icon_eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEliminar.png"))); // NOI18N
-        jPanel1.add(icon_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 50, 50));
-
-        icon_ver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconVer.png"))); // NOI18N
-        jPanel1.add(icon_ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 50, 50));
-
-        icon_editar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEditar.png"))); // NOI18N
-        jPanel1.add(icon_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 50, 50));
-
-        icon_generar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_generar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconReporte.png"))); // NOI18N
-        jPanel1.add(icon_generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 50, 50));
+        jPanel1.add(lbl_iniciados, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 100, 50));
 
         lbl_cuaReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
-        jPanel1.add(lbl_cuaReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, -1, -1));
+        jPanel1.add(lbl_cuaReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
 
         lbl_cuaEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
-        jPanel1.add(lbl_cuaEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+        jPanel1.add(lbl_cuaEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, -1, -1));
 
         lbl_cuaVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
         jPanel1.add(lbl_cuaVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
@@ -125,10 +129,6 @@ public class Inicio extends javax.swing.JFrame {
 
         lbl_recIniciados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecEsquinaIzqCelesteO.png"))); // NOI18N
         jPanel1.add(lbl_recIniciados, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-
-        icon_perfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconPerfil.png"))); // NOI18N
-        jPanel1.add(icon_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 50, 50));
 
         lbl_cirPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CirCeleste.png"))); // NOI18N
         jPanel1.add(lbl_cirPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
