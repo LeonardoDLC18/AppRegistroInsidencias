@@ -4,6 +4,8 @@
  */
 package appregistroincidencias;
 
+import Ventanas.InicioSesion;
+
 /**
  *
  * @author USER
@@ -14,7 +16,20 @@ public class AppRegistroIncidencias {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        ConexionDB conexion = new ConexionDB();
+        boolean conectado = false;
+        
+        conexion.conectar();
+        
+        InicioSesion incioSesion = new InicioSesion();
+        incioSesion.setVisible(true);
+        incioSesion.setLocationRelativeTo(null);
+        
+        
+        
+        
+        
     }
     
 }
