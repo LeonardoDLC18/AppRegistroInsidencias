@@ -4,16 +4,25 @@
  */
 package Ventanas;
 
+import appregistroincidencias.ConexionDB;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
+
 /**
  *
  * @author USER
  */
-public class RegistoUsuario extends javax.swing.JFrame {
+public class RegistroUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistoUsuario
      */
-    public RegistoUsuario() {
+    public RegistroUsuario() {
         initComponents();
     }
 
@@ -28,10 +37,10 @@ public class RegistoUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbl_volver = new javax.swing.JLabel();
-        txt_confirmar = new javax.swing.JTextField();
         txt_usuario = new javax.swing.JTextField();
         txt_correo = new javax.swing.JTextField();
-        txt_contraseña = new javax.swing.JTextField();
+        pw_contra = new javax.swing.JPasswordField();
+        pw_confirmarContra = new javax.swing.JPasswordField();
         lbl_registrar = new javax.swing.JLabel();
         lbl_boton = new javax.swing.JLabel();
         lbl_titulo = new javax.swing.JLabel();
@@ -45,32 +54,32 @@ public class RegistoUsuario extends javax.swing.JFrame {
         lbl_volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_volver.setForeground(new java.awt.Color(193, 248, 255));
         lbl_volver.setText("Volver");
+        lbl_volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_volverMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
-
-        txt_confirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txt_confirmar.setForeground(new java.awt.Color(128, 173, 216));
-        txt_confirmar.setText("Confirmar contraseña...");
-        jPanel1.add(txt_confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, 40));
 
         txt_usuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_usuario.setForeground(new java.awt.Color(128, 173, 216));
-        txt_usuario.setText("Usuario...");
         jPanel1.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 290, 40));
 
         txt_correo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_correo.setForeground(new java.awt.Color(128, 173, 216));
-        txt_correo.setText("Correo...");
         jPanel1.add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 290, 40));
-
-        txt_contraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txt_contraseña.setForeground(new java.awt.Color(128, 173, 216));
-        txt_contraseña.setText("Contraseña...");
-        jPanel1.add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 40));
+        jPanel1.add(pw_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 40));
+        jPanel1.add(pw_confirmarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, 40));
 
         lbl_registrar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
         lbl_registrar.setForeground(new java.awt.Color(193, 255, 248));
         lbl_registrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_registrar.setText("REGISTRAR");
+        lbl_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_registrarMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 240, 50));
 
         lbl_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
@@ -102,6 +111,43 @@ public class RegistoUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lbl_registrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_registrarMouseClicked
+        ConexionDB cx = new ConexionDB();
+        try {            
+            String usuario = txt_usuario.getText();
+            String correo = txt_correo.getText();
+            String contra = String.valueOf(pw_contra.getPassword());
+            String confirContra = String.valueOf(pw_confirmarContra.getPassword());
+            if (confirContra.equals(contra)) {
+                String consulta = "insert into usuarios (usuario, contra, correo, tipo)" 
+                    + "values ('" + usuario + "', '" + contra + "', '" + correo + "', 'Comun')";
+                Statement st = cx.conectar().createStatement();
+                int filasAfectadas = st.executeUpdate(consulta);
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(this, 
+                            "El usuario ha sido registrado en la DB");             
+                } else {
+                    JOptionPane.showMessageDialog(this, 
+                            "El usuario NO se pudo registrar en la DB");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, 
+                            "¡Las contraseñas ingresadas no coinciden!"); 
+            }                                  
+        } catch (SQLException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        } 
+        cx.desconectar();
+    }//GEN-LAST:event_lbl_registrarMouseClicked
+
+    private void lbl_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_volverMouseClicked
+        InicioSesion ventanaAnterior = new InicioSesion();
+        ventanaAnterior.setLocationRelativeTo(this);
+        ventanaAnterior.setVisible(true);        
+        this.setVisible(false);   
+    }//GEN-LAST:event_lbl_volverMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -119,20 +165,35 @@ public class RegistoUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistoUsuario().setVisible(true);
+                new RegistroUsuario().setVisible(true);
             }
         });
     }
@@ -145,8 +206,8 @@ public class RegistoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_registrar;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JLabel lbl_volver;
-    private javax.swing.JTextField txt_confirmar;
-    private javax.swing.JTextField txt_contraseña;
+    private javax.swing.JPasswordField pw_confirmarContra;
+    private javax.swing.JPasswordField pw_contra;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables

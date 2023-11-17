@@ -4,17 +4,25 @@
  */
 package Ventanas;
 
+import appregistroincidencias.Usuario;
+
 /**
  *
  * @author USER
  */
 public class Inicio extends javax.swing.JFrame {
+    private Usuario usuarioEnUso;
 
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();       
+    }
+    
+    public Inicio(Usuario usuario) {
+        initComponents();  
+        usuarioEnUso = usuario;
     }
 
     /**
@@ -82,6 +90,11 @@ public class Inicio extends javax.swing.JFrame {
 
         icon_perfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconPerfil.png"))); // NOI18N
+        icon_perfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_perfilMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 50, 50));
 
         lbl_resueltos.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -161,6 +174,10 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void icon_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_perfilMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icon_perfilMouseClicked
 
     /**
      * @param args the command line arguments
