@@ -5,6 +5,7 @@
 package Ventanas;
 
 import appregistroincidencias.ConexionDB;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -118,22 +119,37 @@ public class RegistroUsuario extends javax.swing.JFrame {
             String correo = txt_correo.getText();
             String contra = String.valueOf(pw_contra.getPassword());
             String confirContra = String.valueOf(pw_confirmarContra.getPassword());
+
             if (confirContra.equals(contra)) {
-                String consulta = "insert into usuarios (usuario, contra, correo, tipo)" 
-                    + "values ('" + usuario + "', '" + contra + "', '" + correo + "', 'Comun')";
+                // Verifica si el correo electrónico ya existe en la base de datos
+                String consulta = "select correo from usuarios where correo = '" 
+                        + correo + "'";
                 Statement st = cx.conectar().createStatement();
-                int filasAfectadas = st.executeUpdate(consulta);
-                if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(this, 
-                            "El usuario ha sido registrado en la DB");             
+                ResultSet rs = st.executeQuery(consulta);
+
+                if (!rs.next()) {
+                    // Si el correo electrónico no existe, registra al usuario
+                    String consulta2 = "insert into usuarios (usuario, contra, correo, tipo)"
+                            + "values ('" + usuario + "', '" + contra + "', '" + correo + "', 'Comun')";
+                    st = cx.conectar().createStatement();
+                    int filasAfectadas = st.executeUpdate(consulta2);
+                    if (filasAfectadas > 0) {
+                        JOptionPane.showMessageDialog(this, 
+                                "El usuario ha sido registrado en la DB");
+                    } else {
+                        JOptionPane.showMessageDialog(this, 
+                                "El usuario NO se pudo registrar en la DB");
+                    }
                 } else {
+                    // Si el correo electrónico existe, muestra un mensaje de error
                     JOptionPane.showMessageDialog(this, 
-                            "El usuario NO se pudo registrar en la DB");
+                            "El correo ingresado ya está registrado.\n Use uno nuevo");
                 }
-            }else{
+            } else {
+                // Si las contraseñas no coinciden, muestra un mensaje de error
                 JOptionPane.showMessageDialog(this, 
-                            "¡Las contraseñas ingresadas no coinciden!"); 
-            }                                  
+                        "¡Las contraseñas ingresadas no coinciden!");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(InicioSesion.class.getName()).
                     log(Level.SEVERE, null, ex);
