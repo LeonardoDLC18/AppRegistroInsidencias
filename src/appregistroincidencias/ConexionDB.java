@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package appregistroincidencias;
 
 import java.util.logging.Level;
@@ -10,15 +6,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 
-/**
- *
- * @author USER
- */
 public class ConexionDB {
-    private final String nombreDB = "db_appincidencias";
+    private final String nombreDB = "db_appincidencias";    
+    private final String usuarioDB = "qqm0g120gmw5xw6xjw4d";
+    private final String contraDB = "pscale_pw_xeEwq4PCzMgcGa0qQDEAyUqn68zSzDJ4iBLDiqi7L2S";
     private final String urlDB = "jdbc:mysql://aws.connect.psdb.cloud/" + nombreDB + "?sslMode=VERIFY_IDENTITY";
+<<<<<<< HEAD
     private final String usuarioDB = "rqs9lkdoltjy9idsbnfw";
     private final String contraDB = "pscale_pw_5ySyOKWwmEpXxVH5sk5xdN4FqeisZB8MjX5m5jad3DG";
+=======
+>>>>>>> 1.0
     private final String driver = "com.mysql.cj.jdbc.Driver";
     private Connection cx;
     
@@ -41,11 +38,9 @@ public class ConexionDB {
      public void desconectar(){
         try {
             cx.close();
+            System.out.println("Se desconectó");
         } catch (SQLException ex) {
             Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
-    
-    
-    
+    }      
 }

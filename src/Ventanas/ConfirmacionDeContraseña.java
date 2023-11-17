@@ -1,22 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Ventanas;
 
-/**
- *
- * @author USER
- */
-public class ConfirmacionDeContraseña extends javax.swing.JFrame {
+import appregistroincidencias.ConexionDB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form InicioSesion
-     */
+public class ConfirmacionDeContraseña extends javax.swing.JFrame {
+    private String usuario;
+    private String correoUsuario;
+    
     public ConfirmacionDeContraseña() {
         initComponents();
     }
 
+    public ConfirmacionDeContraseña(String usuario, String correoUsuario) {
+        initComponents();
+        this.usuario = usuario;
+        this.correoUsuario = correoUsuario;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +36,7 @@ public class ConfirmacionDeContraseña extends javax.swing.JFrame {
         lbl_noCuenta = new javax.swing.JLabel();
         lbl_noCuenta2 = new javax.swing.JLabel();
         lbl_noCorreo = new javax.swing.JLabel();
-        lbl_iniciar = new javax.swing.JLabel();
+        lbl_confirmar = new javax.swing.JLabel();
         lbl_boton = new javax.swing.JLabel();
         txt_contraseña = new javax.swing.JTextField();
         lbl_fondo2 = new javax.swing.JLabel();
@@ -65,20 +69,29 @@ public class ConfirmacionDeContraseña extends javax.swing.JFrame {
         lbl_noCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_noCorreo.setForeground(new java.awt.Color(193, 248, 255));
         lbl_noCorreo.setText("¿No recibiste el correo? ");
+        lbl_noCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_noCorreoMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_noCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
 
-        lbl_iniciar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        lbl_iniciar.setForeground(new java.awt.Color(193, 255, 248));
-        lbl_iniciar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_iniciar.setText("CONFIRMAR");
-        jPanel1.add(lbl_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 240, 50));
+        lbl_confirmar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        lbl_confirmar.setForeground(new java.awt.Color(193, 255, 248));
+        lbl_confirmar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_confirmar.setText("CONFIRMAR");
+        lbl_confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_confirmarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lbl_confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 240, 50));
 
         lbl_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
         jPanel1.add(lbl_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         txt_contraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_contraseña.setForeground(new java.awt.Color(128, 173, 216));
-        txt_contraseña.setText("Contraseña recibida...");
         jPanel1.add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 40));
 
         lbl_fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo2.png"))); // NOI18N
@@ -100,6 +113,50 @@ public class ConfirmacionDeContraseña extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lbl_confirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_confirmarMouseClicked
+        ConexionDB cx = new ConexionDB();
+        cx.conectar();
+        
+        try {            
+            String contraI = txt_contraseña.getText();
+            String consulta = "select * from usuarios where usuario = '" + this.usuario
+                    + "' and correo = '" + correoUsuario + "'";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            if (rs.next()) {
+                //JOptionPane.showMessageDialog(this, "El usuario SI está en la DB");
+                String contraU = rs.getString("contra");
+                
+                if(contraI.equals(contraU)){
+                    JOptionPane.showMessageDialog(this, 
+                        "La contraseña se cambió correctamente!");
+                    InicioSesion ventanaAnterior = new InicioSesion();
+                    ventanaAnterior.setLocationRelativeTo(this);
+                    ventanaAnterior.setVisible(true);        
+                    this.setVisible(false);  
+                } else{
+                    JOptionPane.showMessageDialog(this, 
+                        "La contraseña no se cambió!");
+                }
+                
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                        "Hubo un fallo con los datos");
+            }            
+        } catch (SQLException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        } 
+        cx.desconectar();         
+    }//GEN-LAST:event_lbl_confirmarMouseClicked
+
+    private void lbl_noCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_noCorreoMouseClicked
+        CambioDeContraseña ventanaCambio = new CambioDeContraseña();
+        ventanaCambio.setVisible(true);
+        ventanaCambio.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_noCorreoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -142,9 +199,9 @@ public class ConfirmacionDeContraseña extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_boton;
+    private javax.swing.JLabel lbl_confirmar;
     private javax.swing.JLabel lbl_fondo;
     private javax.swing.JLabel lbl_fondo2;
-    private javax.swing.JLabel lbl_iniciar;
     private javax.swing.JLabel lbl_noCorreo;
     private javax.swing.JLabel lbl_noCuenta;
     private javax.swing.JLabel lbl_noCuenta2;
