@@ -134,7 +134,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_iniciarMouseClicked
 
     private void lbl_noCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_noCuentaMouseClicked
-        RegistroUsuario ventanaRegistro = new RegistroUsuario();
+        RegistroUsuario ventanaRegistro = new RegistroUsuario(this);
         ventanaRegistro.setVisible(true);
         ventanaRegistro.setLocationRelativeTo(this);
         this.setVisible(false);         

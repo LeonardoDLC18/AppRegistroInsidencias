@@ -10,11 +10,17 @@ package Ventanas;
  */
 public class CondicionesDeServicio extends javax.swing.JFrame {
 
+    private Perfil ventAnt; 
     /**
      * Creates new form InicioSesion
      */
     public CondicionesDeServicio() {
         initComponents();
+    }
+    
+    public CondicionesDeServicio(Perfil ventAnt) {
+        initComponents();
+        this.ventAnt = ventAnt;
     }
 
     /**
@@ -48,6 +54,7 @@ public class CondicionesDeServicio extends javax.swing.JFrame {
         txt_texto.setColumns(10);
         txt_texto.setLineWrap(true);
         txt_texto.setRows(5);
+        txt_texto.setText("Condiciones de Servicio para la Aplicación de Registro de Asistencia\n\nFecha de entrada en vigor: [Fecha]\n\nPor favor, lee detenidamente estas Condiciones de Servicio (\"Condiciones\", \"Términos\") antes de utilizar la aplicación de registro de asistencia (\"la Aplicación\") operada por [Nombre de la Empresa] (\"nosotros\", \"nuestro\", \"la Empresa\").\n\nAl utilizar la Aplicación, aceptas cumplir y estar sujeto a estas Condiciones. Si no estás de acuerdo con alguna parte de las Condiciones, no podrás utilizar la Aplicación.\n\n1. Uso de la Aplicación\n\n1.1. Registro de Cuenta: Para acceder y utilizar la funcionalidad completa de la Aplicación, debes registrarte creando una cuenta. Tú eres responsable de mantener la confidencialidad de tu información de cuenta y de todas las actividades que ocurran bajo tu cuenta.\n\n1.2. Información Precisa: Asegúrate de proporcionar información precisa y actualizada durante el proceso de registro. Nos reservamos el derecho de suspender o cancelar tu cuenta si determinamos que la información proporcionada es falsa o no está actualizada.\n\n2. Registro de Asistencia\n\n2.1. Precisión de Datos: La Aplicación se utiliza para el registro preciso de la asistencia. Tú eres responsable de verificar y corregir cualquier error en los datos de asistencia registrados a través de la Aplicación.\n\n2.2. Privacidad de los Datos: Garantizamos la privacidad y seguridad de los datos de asistencia registrados. No compartiremos esta información con terceros sin tu consentimiento, excepto cuando sea requerido por la ley.\n\n3. Conducta del Usuario\n\n3.1. Uso Adecuado: Te comprometes a utilizar la Aplicación de manera adecuada y conforme a todas las leyes y regulaciones aplicables. No debes utilizar la Aplicación con fines ilegales o no autorizados.\n\n3.2. Respeto a los Derechos de Otros: No debes infringir los derechos de propiedad intelectual de terceros al utilizar la Aplicación. Esto incluye, pero no se limita a, la reproducción no autorizada de contenido protegido por derechos de autor.\n\n4. Actualizaciones y Cambios en los Términos\n\n4.1. Cambios en las Condiciones: Nos reservamos el derecho de actualizar o cambiar estas Condiciones en cualquier momento. Se te notificará sobre cambios significativos en las Condiciones. El uso continuado de la Aplicación después de dichos cambios constituirá tu aceptación de las nuevas Condiciones.\n\n5. Terminación\n\n5.1. Terminación por Incumplimiento: Nos reservamos el derecho de suspender o terminar tu acceso a la Aplicación si determinamos, a nuestra entera discreción, que has violado alguna de estas Condiciones.\n\n6. Contacto\n\n6.1. Soporte: Si tienes preguntas o inquietudes sobre estas Condiciones, por favor contáctanos a través de [dirección de correo electrónico].\n\nAl utilizar la Aplicación, aceptas estas Condiciones de Servicio. Gracias por confiar en nuestra aplicación de registro de asistencia.\n\nAtentamente,\nLogin Empresa\nsoporte.login1@gmail.com");
         txt_texto.setAutoscrolls(false);
         jScrollPane1.setViewportView(txt_texto);
 
@@ -56,6 +63,11 @@ public class CondicionesDeServicio extends javax.swing.JFrame {
         lbl_volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_volver.setForeground(new java.awt.Color(193, 248, 255));
         lbl_volver.setText("Volver");
+        lbl_volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_volverMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
         lbl_titulo2.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
@@ -87,6 +99,12 @@ public class CondicionesDeServicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lbl_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_volverMouseClicked
+        ventAnt.setLocationRelativeTo(this);
+        ventAnt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_volverMouseClicked
 
     /**
      * @param args the command line arguments

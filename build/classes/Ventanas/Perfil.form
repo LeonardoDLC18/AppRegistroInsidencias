@@ -291,6 +291,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Condiciones de servicios"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_condicionesMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

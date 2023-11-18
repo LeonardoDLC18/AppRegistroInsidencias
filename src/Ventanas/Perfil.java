@@ -191,6 +191,11 @@ public class Perfil extends javax.swing.JFrame {
         lbl_condiciones.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lbl_condiciones.setForeground(new java.awt.Color(149, 177, 246));
         lbl_condiciones.setText("Condiciones de servicios");
+        lbl_condiciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_condicionesMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_condicionesLayout = new javax.swing.GroupLayout(jp_condiciones);
         jp_condiciones.setLayout(jp_condicionesLayout);
@@ -352,6 +357,13 @@ public class Perfil extends javax.swing.JFrame {
             this.setVisible(false); 
         }
     }//GEN-LAST:event_lbl_text4MouseClicked
+
+    private void lbl_condicionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_condicionesMouseClicked
+        CondicionesDeServicio ventCont = new CondicionesDeServicio(this);
+        ventCont.setLocationRelativeTo(this);
+        ventCont.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_condicionesMouseClicked
 
     /**
      * @param args the command line arguments
