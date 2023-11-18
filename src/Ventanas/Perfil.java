@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  */
 public class Perfil extends javax.swing.JFrame {
     private Usuario usuarioEnUso;
-    private JFrame ventanaAnt;
+    private Inicio ventanaAnt;
     
     /**
      * Creates new form Inicio
@@ -22,7 +22,7 @@ public class Perfil extends javax.swing.JFrame {
         initComponents();       
     }
     
-    public Perfil(Usuario usuario, JFrame ventanaAnt) {
+    public Perfil(Usuario usuario, Inicio ventanaAnt) {
         initComponents();   
         usuarioEnUso = usuario;
         this.ventanaAnt = ventanaAnt;
@@ -285,6 +285,7 @@ public class Perfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void icon_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_volverMouseClicked
+        ventanaAnt.actualizarLista();
         ventanaAnt.setLocationRelativeTo(this);
         ventanaAnt.setVisible(true);
         this.setVisible(false);
