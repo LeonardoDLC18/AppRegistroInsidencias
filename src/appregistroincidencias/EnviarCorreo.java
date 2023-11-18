@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 
 public class EnviarCorreo {
     
-    public void Enviar(String correoRecibidor, String nuevaContra){
+    public void Enviar(String correoRecibidor, String mensajeEnviar, String titulo){
         String correoEnvia = "soporte.login1@gmail.com";
         String contra = "umrrhcaqtrvpssnq";
-        String mensaje = "La nueva contraseña es: " + nuevaContra;
+        String mensaje = mensajeEnviar;
         
         Properties objetoPec = new Properties();
         objetoPec.put("mail.smtp.host", "smtp.gmail.com");
@@ -27,7 +27,7 @@ public class EnviarCorreo {
             mail.setFrom(new InternetAddress(correoEnvia));
             mail.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(correoRecibidor));
-            mail.setSubject("Nueva contraseña");
+            mail.setSubject(titulo);
             mail.setText(mensaje);
             
             Transport transporte = sesion.getTransport("smtp");

@@ -117,8 +117,7 @@ public class CambioDeContraseña extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_noCuentaMouseClicked
 
     private void lbl_enviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_enviarMouseClicked
-        
-        
+               
         EnviarCorreo correo = new EnviarCorreo();
         
         ConexionDB cx = new ConexionDB();
@@ -132,7 +131,8 @@ public class CambioDeContraseña extends javax.swing.JFrame {
             if (rs.next()) {
                 //JOptionPane.showMessageDialog(this, "El usuario SI está en la DB");
                 String cadenaRandom = generarCadenaRandom(10);
-                correo.Enviar(correoUsuario, cadenaRandom);
+                String mensaje = "La nueva contraseña es: " + cadenaRandom;
+                correo.Enviar(correoUsuario, mensaje, "Nueva contraseña");
                 
                 String consulta2 = "update usuarios set contra = '" + 
                         cadenaRandom + "' where usuario = '" + usuario

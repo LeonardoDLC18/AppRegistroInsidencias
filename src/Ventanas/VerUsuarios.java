@@ -10,11 +10,17 @@ package Ventanas;
  */
 public class VerUsuarios extends javax.swing.JFrame {
 
+    private Perfil ventanaAnt;
     /**
      * Creates new form InicioSesion
      */
     public VerUsuarios() {
         initComponents();
+    }
+    
+    public VerUsuarios(Perfil ventanaA) {
+        initComponents();
+        ventanaAnt = ventanaA;
     }
 
     /**
@@ -68,6 +74,11 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         icon_volver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconVolver.png"))); // NOI18N
+        icon_volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_volverMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 50, 50));
 
         lbl_cuaVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
@@ -106,6 +117,12 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void icon_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_volverMouseClicked
+        ventanaAnt.setLocationRelativeTo(this);
+        ventanaAnt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_volverMouseClicked
 
     /**
      * @param args the command line arguments
