@@ -4,7 +4,19 @@
  */
 package Ventanas;
 
+import static Ventanas.CambioDeContraseña.generarCadenaRandom;
+import appregistroincidencias.ConexionDB;
+import appregistroincidencias.Registro;
 import appregistroincidencias.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -12,12 +24,15 @@ import appregistroincidencias.Usuario;
  */
 public class Inicio extends javax.swing.JFrame {
     private Usuario usuarioEnUso;
+    
+    DefaultListModel<String> modeloLista = new DefaultListModel<>();
+    private ArrayList<Registro> listaRegistro = new ArrayList<>();
 
     /**
      * Creates new form Inicio
      */
     public Inicio() {
-        initComponents();       
+        initComponents();               
     }
     
     public Inicio(Usuario usuario) {
@@ -28,8 +43,12 @@ public class Inicio extends javax.swing.JFrame {
             icon_eliminar.setVisible(false);
             lbl_cuaEliminar.setVisible(false);
             lbl_cuaEditar.setVisible(false);
+<<<<<<< HEAD
         }
         
+=======
+        }       
+>>>>>>> 1.1
     }
 
     /**
@@ -77,6 +96,11 @@ public class Inicio extends javax.swing.JFrame {
 
         icon_registro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconRegistro.png"))); // NOI18N
+        icon_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_registroMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 50, 50));
 
         icon_eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -85,10 +109,20 @@ public class Inicio extends javax.swing.JFrame {
 
         icon_ver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconVer.png"))); // NOI18N
+        icon_ver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_verMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 50, 50));
 
         icon_editar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEditar.png"))); // NOI18N
+        icon_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_editarMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 50, 50));
 
         icon_generar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -189,6 +223,31 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);       
     }//GEN-LAST:event_icon_perfilMouseClicked
 
+    private void icon_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_registroMouseClicked
+        RegistroDeReporte ventRegistro = new RegistroDeReporte(usuarioEnUso, this);
+        ventRegistro.setLocationRelativeTo(this);
+        ventRegistro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_registroMouseClicked
+
+    private void icon_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_editarMouseClicked
+        int index = lst_listaMostrando.getSelectedIndex();
+        Registro registro = listaRegistro.get(index);
+        RegistroDeReporte ventRegistro = new RegistroDeReporte(usuarioEnUso,registro,this);
+        ventRegistro.setLocationRelativeTo(this);
+        ventRegistro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_editarMouseClicked
+
+    private void icon_verMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_verMouseClicked
+        int index = lst_listaMostrando.getSelectedIndex();
+        Registro registro = listaRegistro.get(index);
+        RegistroDeReporte ventRegistro = new RegistroDeReporte(registro,this);
+        ventRegistro.setLocationRelativeTo(this);
+        ventRegistro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_verMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +281,45 @@ public class Inicio extends javax.swing.JFrame {
                 new Inicio().setVisible(true);
             }
         });
+    }
+    
+    public void actualizarLista(){
+        listaRegistro.removeAll(listaRegistro);
+        modeloLista.removeAllElements();
+        lst_listaMostrando.removeAll();
+
+        ConexionDB cx = new ConexionDB();
+        try {
+            String consulta = "select * from registros";
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            // Elimina la condición if (rs.next()) para procesar todos los registros
+            while (rs.next()) {
+                Registro registro = new Registro();
+                registro.setId_registro(rs.getInt("id_registro"));
+                registro.setTitulo(rs.getString("titulo"));
+                registro.setDescripcion(rs.getString("descripcion"));
+                registro.setCategoria(rs.getString("categoria"));
+                registro.setEstado(rs.getString("estado"));
+                registro.setPrioridad(rs.getString("prioridad"));
+                listaRegistro.add(registro);
+
+                String modelo = registro.getId_registro() + "  " + registro.getTitulo();
+                modeloLista.addElement(modelo);
+            }
+
+            if (listaRegistro.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay registros en la base de datos");
+            } else {
+                // Después de procesar todos los registros, asigna el modelo al JList
+                lst_listaMostrando.setModel(modeloLista);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cx.desconectar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
