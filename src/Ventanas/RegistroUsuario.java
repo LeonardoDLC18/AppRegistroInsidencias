@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 
@@ -18,12 +19,27 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class RegistroUsuario extends javax.swing.JFrame {
-
+    
+    private InicioSesion ventAnt;
+    private VerUsuarios ventAnt2;
+    private int cualVentana; // 1 = inicio de sesio, 2 = verUsuarios
     /**
      * Creates new form RegistoUsuario
      */
     public RegistroUsuario() {
         initComponents();
+    }
+    
+    public RegistroUsuario(InicioSesion ventAnt) {
+        initComponents();
+        this.ventAnt = ventAnt;
+        cualVentana = 1;
+    }
+    
+    public RegistroUsuario(VerUsuarios ventAnt) {
+        initComponents();
+        this.ventAnt2 = ventAnt;
+        cualVentana = 2;
     }
 
     /**
@@ -142,10 +158,17 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_registrarMouseClicked
 
     private void lbl_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_volverMouseClicked
-        InicioSesion ventanaAnterior = new InicioSesion();
-        ventanaAnterior.setLocationRelativeTo(this);
-        ventanaAnterior.setVisible(true);        
-        this.setVisible(false);   
+        //InicioSesion ventanaAnterior = new InicioSesion();
+        if (cualVentana == 1) {
+            ventAnt.setLocationRelativeTo(this);
+            ventAnt.setVisible(true);        
+            this.setVisible(false);  
+        } else if (cualVentana == 2){      
+            ventAnt2.actualizarLista();
+            ventAnt2.setLocationRelativeTo(this);
+            ventAnt2.setVisible(true);        
+            this.setVisible(false);  
+        }
     }//GEN-LAST:event_lbl_volverMouseClicked
 
     /**

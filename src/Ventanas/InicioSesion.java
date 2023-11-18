@@ -118,7 +118,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 usuarioObtenido.setTipo(rs.getString("tipo"));
                 
                 Inicio ventanaInicio = new Inicio(usuarioObtenido);
-                ventanaInicio.actualizarLista();
+                ventanaInicio.actualizarLista("Todos");
                 ventanaInicio.setVisible(true);
                 ventanaInicio.setLocationRelativeTo(this);
                 this.setVisible(false);               

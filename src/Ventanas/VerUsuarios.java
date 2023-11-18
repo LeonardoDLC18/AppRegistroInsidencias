@@ -4,12 +4,27 @@
  */
 package Ventanas;
 
+import appregistroincidencias.ConexionDB;
+import appregistroincidencias.Registro;
+import appregistroincidencias.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
 public class VerUsuarios extends javax.swing.JFrame {
 
+    DefaultListModel<String> modeloLista = new DefaultListModel<>();
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    
     private Perfil ventanaAnt;
     /**
      * Creates new form InicioSesion
@@ -42,7 +57,7 @@ public class VerUsuarios extends javax.swing.JFrame {
         icon_volver = new javax.swing.JLabel();
         lbl_cuaVolver = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        list_listaMostrando = new javax.swing.JList<>();
+        lst_listaMostrando = new javax.swing.JList<>();
         lbl_titulo1 = new javax.swing.JLabel();
         lbl_fondo2 = new javax.swing.JLabel();
         lbl_fondo = new javax.swing.JLabel();
@@ -53,6 +68,11 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         icon_agregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconAgregar.png"))); // NOI18N
+        icon_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_agregarMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 50, 50));
 
         lbl_cuaAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
@@ -60,6 +80,11 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         icon_eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEliminar.png"))); // NOI18N
+        icon_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_eliminarMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 50, 50));
 
         lbl_cuaEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
@@ -84,12 +109,12 @@ public class VerUsuarios extends javax.swing.JFrame {
         lbl_cuaVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
         jPanel1.add(lbl_cuaVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 50));
 
-        list_listaMostrando.setModel(new javax.swing.AbstractListModel<String>() {
+        lst_listaMostrando.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(list_listaMostrando);
+        jScrollPane2.setViewportView(lst_listaMostrando);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 200));
 
@@ -123,6 +148,38 @@ public class VerUsuarios extends javax.swing.JFrame {
         ventanaAnt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_icon_volverMouseClicked
+
+    private void icon_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_agregarMouseClicked
+        RegistroUsuario ventRegistro = new RegistroUsuario(this);
+        ventRegistro.setLocationRelativeTo(this);
+        ventRegistro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_agregarMouseClicked
+
+    private void icon_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_eliminarMouseClicked
+        int index = lst_listaMostrando.getSelectedIndex();
+        Usuario usuario = listaUsuarios.get(index);        
+        
+        ConexionDB cx = new ConexionDB();             
+        try {            
+            String consulta = "delete from usuarios where id_usuario = " + usuario.getId_usuario();
+            Statement st = cx.conectar().createStatement();
+            int filasAfectadas = st.executeUpdate(consulta);
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(this, 
+                      "El usuario SI ha sido eliminado de la DB");             
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                      "El usuario NO ha sido eliminado de la DB");
+            }            
+        } catch (SQLException ex) {
+                Logger.getLogger(Inicio.class.getName()).
+                        log(Level.SEVERE, null, ex);
+        } 
+        cx.desconectar(); 
+        listaUsuarios.remove(index);
+        actualizarLista();    
+    }//GEN-LAST:event_icon_eliminarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,6 +222,45 @@ public class VerUsuarios extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void actualizarLista(){
+        listaUsuarios.removeAll(listaUsuarios);
+        modeloLista.removeAllElements();
+        lst_listaMostrando.removeAll();
+
+        ConexionDB cx = new ConexionDB();
+        try {
+            String consulta = "select * from usuarios";
+            
+            Statement st = cx.conectar().createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setContra(rs.getString("contra"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setTipo(rs.getString("tipo"));
+                
+                listaUsuarios.add(usuario);
+
+                String modelo = usuario.getId_usuario() + "  " + usuario.getUsuario();
+                modeloLista.addElement(modelo);
+            }
+
+            if (listaUsuarios.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay registros en la base de datos");
+            } else {
+                // Después de procesar todos los registros, asigna el modelo al JList
+                lst_listaMostrando.setModel(modeloLista);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cx.desconectar();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel icon_agregar;
@@ -180,6 +276,6 @@ public class VerUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_fondo;
     private javax.swing.JLabel lbl_fondo2;
     private javax.swing.JLabel lbl_titulo1;
-    private javax.swing.JList<String> list_listaMostrando;
+    private javax.swing.JList<String> lst_listaMostrando;
     // End of variables declaration//GEN-END:variables
 }

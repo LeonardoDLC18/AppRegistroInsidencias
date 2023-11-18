@@ -267,7 +267,7 @@ public class RegistroDeReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_icon_guardarMouseClicked
 
     private void icon_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_volverMouseClicked
-        ventanaAnt.actualizarLista();
+        ventanaAnt.actualizarLista("Todos");
         ventanaAnt.setLocationRelativeTo(this);
         ventanaAnt.setVisible(true);
         this.setVisible(false);

@@ -285,7 +285,7 @@ public class Perfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void icon_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_volverMouseClicked
-        ventanaAnt.actualizarLista();
+        ventanaAnt.actualizarLista("Todos");
         ventanaAnt.setLocationRelativeTo(this);
         ventanaAnt.setVisible(true);
         this.setVisible(false);
@@ -309,7 +309,8 @@ public class Perfil extends javax.swing.JFrame {
             ventana.setVisible(true);
             this.setVisible(false);
         } else if("Eliminar usuario".equals(texto)){
-            VerUsuarios verUsuarios = new VerUsuarios();
+            VerUsuarios verUsuarios = new VerUsuarios(this);
+            verUsuarios.actualizarLista();
             verUsuarios.setLocationRelativeTo(this);
             verUsuarios.setVisible(true);
             this.setVisible(false); 
@@ -325,8 +326,9 @@ public class Perfil extends javax.swing.JFrame {
             ventana.setLocationRelativeTo(this);
             ventana.setVisible(true);
             this.setVisible(false);
-        } else if("Agregar usuarios".equals(texto)){
-            VerUsuarios verUsuarios = new VerUsuarios();
+        } else if("Agregar usuario".equals(texto)){
+            VerUsuarios verUsuarios = new VerUsuarios(this);
+            verUsuarios.actualizarLista();
             verUsuarios.setLocationRelativeTo(this);
             verUsuarios.setVisible(true);
             this.setVisible(false); 
@@ -343,7 +345,8 @@ public class Perfil extends javax.swing.JFrame {
             ventana.setVisible(true);
             this.setVisible(false);
         } else if("Ver usuarios".equals(texto)){
-            VerUsuarios verUsuarios = new VerUsuarios();
+            VerUsuarios verUsuarios = new VerUsuarios(this);
+            verUsuarios.actualizarLista();
             verUsuarios.setLocationRelativeTo(this);
             verUsuarios.setVisible(true);
             this.setVisible(false); 
