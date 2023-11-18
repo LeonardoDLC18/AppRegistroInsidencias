@@ -92,6 +92,11 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         icon_editar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconEditar.png"))); // NOI18N
+        icon_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_editarMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 50, 50));
 
         lbl_cuaEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
@@ -180,6 +185,16 @@ public class VerUsuarios extends javax.swing.JFrame {
         listaUsuarios.remove(index);
         actualizarLista();    
     }//GEN-LAST:event_icon_eliminarMouseClicked
+
+    private void icon_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_editarMouseClicked
+        int index = lst_listaMostrando.getSelectedIndex();
+        Usuario usuario = listaUsuarios.get(index);    
+        
+        EditarUsuario ventEditar = new EditarUsuario(usuario, this);
+        ventEditar.setLocationRelativeTo(this);
+        ventEditar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_icon_editarMouseClicked
 
     /**
      * @param args the command line arguments
