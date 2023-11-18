@@ -8,8 +8,8 @@ import java.sql.Connection;
 
 public class ConexionDB {
     private final String nombreDB = "db_appincidencias";    
-    private final String usuarioDB = "dd1py4xbdpbt57yvso44";
-    private final String contraDB = "pscale_pw_e36GGlXrYkBHjCqSeMQQNAmI10kF2JUoTalE9BmBsfw";
+    private final String usuarioDB = "a0yac9vhu0ikrhbyt5ov";
+    private final String contraDB = "pscale_pw_oXVNkzSZktHaqDAEcf696NYDbqp56wQOKnxvutvFn4T";
     private final String urlDB = "jdbc:mysql://aws.connect.psdb.cloud/" + nombreDB + "?sslMode=VERIFY_IDENTITY";
     private final String driver = "com.mysql.cj.jdbc.Driver";
     private Connection cx;

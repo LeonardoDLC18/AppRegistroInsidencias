@@ -217,6 +217,11 @@ public class Perfil extends javax.swing.JFrame {
 
         icon_salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/iconSalir.png"))); // NOI18N
+        icon_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_salirMouseClicked(evt);
+            }
+        });
         jPanel1.add(icon_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 50, 50));
 
         icon_volver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -364,6 +369,13 @@ public class Perfil extends javax.swing.JFrame {
         ventCont.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lbl_condicionesMouseClicked
+
+    private void icon_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_salirMouseClicked
+        InicioSesion ventInicio = new InicioSesion();
+        ventInicio.setLocationRelativeTo(this);
+        ventInicio.setVisible(true);
+        this.setVisible(false);        
+    }//GEN-LAST:event_icon_salirMouseClicked
 
     /**
      * @param args the command line arguments
