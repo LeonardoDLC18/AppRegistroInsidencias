@@ -4,17 +4,32 @@
  */
 package Ventanas;
 
+import appregistroincidencias.EnviarCorreo;
+import appregistroincidencias.Usuario;
+
 /**
  *
  * @author USER
  */
 public class Comentario extends javax.swing.JFrame {
-
+    private Usuario usuarioUsando;
+    private Perfil ventanaAnt;
+    
     /**
      * Creates new form InicioSesion
      */
     public Comentario() {
         initComponents();
+    }
+        
+    public Comentario(String titulo, String texto1, String texto2, 
+            Perfil ventanaA, Usuario usuario) {
+        initComponents();
+        lbl_titulo.setText(titulo);
+        lbl_texto1.setText(texto1);
+        lbl_texto2.setText(texto2);
+        ventanaAnt = ventanaA;
+        usuarioUsando = usuario;
     }
 
     /**
@@ -57,23 +72,35 @@ public class Comentario extends javax.swing.JFrame {
 
         lbl_texto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_texto1.setForeground(new java.awt.Color(193, 248, 255));
+        lbl_texto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_texto1.setText("¡¡¡Escribe tu comentario, tendremos ");
-        jPanel1.add(lbl_texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel1.add(lbl_texto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 280, -1));
 
         lbl_texto2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_texto2.setForeground(new java.awt.Color(193, 248, 255));
+        lbl_texto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_texto2.setText("en cuenta tu sugerencia!!!");
-        jPanel1.add(lbl_texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(lbl_texto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 280, -1));
 
         lbl_volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_volver.setForeground(new java.awt.Color(193, 248, 255));
         lbl_volver.setText("Volver");
-        jPanel1.add(lbl_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        lbl_volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_volverMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lbl_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
 
         lbl_enviar.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
         lbl_enviar.setForeground(new java.awt.Color(193, 255, 248));
         lbl_enviar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_enviar.setText("ENVIAR");
+        lbl_enviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_enviarMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 240, 50));
 
         lbl_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/RecCeleste.png"))); // NOI18N
@@ -81,8 +108,9 @@ public class Comentario extends javax.swing.JFrame {
 
         lbl_titulo.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
         lbl_titulo.setForeground(new java.awt.Color(128, 173, 216));
+        lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_titulo.setText("COMENTARIO");
-        jPanel1.add(lbl_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+        jPanel1.add(lbl_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 280, -1));
 
         lbl_fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/fondo2.png"))); // NOI18N
         jPanel1.add(lbl_fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 330));
@@ -103,6 +131,30 @@ public class Comentario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lbl_volverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_volverMouseClicked
+        ventanaAnt.setLocationRelativeTo(this);
+        ventanaAnt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lbl_volverMouseClicked
+
+    private void lbl_enviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_enviarMouseClicked
+        String mensaje = txt_texto.getText();
+        String correoEnviador = "soporte.login1@gmail.com";
+        EnviarCorreo correo = new EnviarCorreo();
+        
+        if ("COMENTARIO".equals(lbl_titulo.getText())) {            
+            String titulo = "Comentario de " + usuarioUsando.getCorreo();            
+            correo.Enviar(correoEnviador, mensaje, titulo);
+        }else if ("RECLAMO".equals(lbl_titulo.getText())) {
+            String titulo = "Reclamo de " + usuarioUsando.getCorreo();            
+            correo.Enviar(correoEnviador, mensaje, titulo);
+        } else if ("AYUDA".equals(lbl_titulo.getText())) {
+            String titulo = usuarioUsando.getCorreo() + " está pidiendo ayuda";
+            
+            correo.Enviar(correoEnviador, mensaje, titulo);
+        }       
+    }//GEN-LAST:event_lbl_enviarMouseClicked
 
     /**
      * @param args the command line arguments

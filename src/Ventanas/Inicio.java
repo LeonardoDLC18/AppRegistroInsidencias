@@ -23,6 +23,13 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio(Usuario usuario) {
         initComponents();  
         usuarioEnUso = usuario;
+        if ("Comun".equals(usuarioEnUso.getTipo())) {
+            icon_editar.setVisible(false);
+            icon_eliminar.setVisible(false);
+            lbl_cuaEliminar.setVisible(false);
+            lbl_cuaEditar.setVisible(false);
+        }
+        
     }
 
     /**
@@ -125,10 +132,10 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(lbl_cuaVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
 
         lbl_cuaEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
-        jPanel1.add(lbl_cuaEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
+        jPanel1.add(lbl_cuaEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
         lbl_cuaGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaCeleste.png"))); // NOI18N
-        jPanel1.add(lbl_cuaGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+        jPanel1.add(lbl_cuaGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
 
         lbl_cuaFiltros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_cuaFiltros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/CuaFiltroCeleste.png"))); // NOI18N
@@ -176,7 +183,10 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void icon_perfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_perfilMouseClicked
-        // TODO add your handling code here:
+        Perfil perfil = new Perfil(usuarioEnUso, this);
+        perfil.setLocationRelativeTo(this);
+        perfil.setVisible(true);
+        this.setVisible(false);       
     }//GEN-LAST:event_icon_perfilMouseClicked
 
     /**
